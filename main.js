@@ -1,20 +1,24 @@
-// 1. 4 ta elementdan iborat array yaratish
-let mevalar = ["Olma", "Banan", "Gilos", "Shaftoli"];
+function changeName() {
+    // Prompt orqali ism olish
+    const name = prompt("Ismingizni kiriting:");
 
-// 2. Array uzunligini console va alertda chiqarish
-console.log("Array uzunligi:", mevalar.length);
-alert("Array ichida " + mevalar.length + " ta element bor.");
+    // Agar ism kiritilgan bo'lsa va faqat bo'sh joylardan iborat bo'lmasa
+    if (name && name.trim().length > 0) {
+        const displayElement = document.getElementById('displayName');
+        
+        // DOM-ga ismni chiqarish
+        displayElement.innerText = name.trim();
+        
+        // Kichik effekt: Ism o'zgarganda animatsiya berish
+        displayElement.classList.add('animate-bounce');
+        setTimeout(() => {
+            displayElement.classList.remove('animate-bounce');
+        }, 1000);
 
-// 3. Confirm orqali foydalanuvchidan so'rash
-let savol = confirm("Arraydan bitta elementni o'chirib tashlaymizmi?");
-
-if (savol) {
-    // OK bosilsa, oxirgi elementni olib tashlaymiz
-    mevalar.pop();
-    console.log("Element o'chirildi. Yangi array:", mevalar);
-    alert("Bitta element o'chirildi. Qolgan elementlar soni: " + mevalar.length);
-} else {
-    // Otmena bosilsa, array o'zgarmaydi
-    console.log("O'chirish bekor qilindi. Array o'zgarmadi:", mevalar);
-    alert("O'chirish bekor qilindi. Elementlar soni: " + mevalar.length);
+    } else if (name !== null) {
+        alert("Iltimos, haqiqiy ism kiriting!");
+    }
 }
+window.onload = () => {
+    setTimeout(changeName, 500); 
+};
